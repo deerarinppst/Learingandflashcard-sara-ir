@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="th" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สื่อการสอนและบัตรคำ สระเออะ (เ-อะ)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        * {
+            font-family: 'Sarabun', sans-serif;
+            user-select: none;
+        }
+        
+        /* 3D Card Flip Effect */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        /* Custom Scrollbar prevention and animations */
+        body, html {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 h-screen flex flex-col justify-between overflow-hidden">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-amber-500 text-white shadow-md flex-none px-4 py-2 flex justify-between items-center z-10">
+        <div class="flex items-center space-x-3">
+            <div class="bg-white text-amber-600 font-extrabold text-2xl px-3 py-1 rounded-xl shadow-inner border-2 border-amber-300">
+                เ-อะ
+            </div>
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold leading-tight">สื่อการสอนสระเออะ</h1>
+                <p class="text-xs text-amber-100">สื่อเรียนรู้สระเสียงสั้น (ไม่มีตัวสะกด)</p>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="flex bg-amber-600/50 p-1 rounded-xl space-x-1 border border-amber-400/40">
+            <button onclick="switchTab('intro')" id="tab-intro" class="nav-btn px-3 py-1.5 rounded-lg text-sm md:text-base font-semibold transition-all bg-white text-amber-700 shadow">
+                <i data-lucide="book-open" class="inline-block w-4 h-4 mr-1"></i> รู้จักสระเออะ
+            </button>
+            <button onclick="switchTab('combine')" id="tab-combine" class="nav-btn px-3 py-1.5 rounded-lg text-sm md:text-base font-semibold transition-all text-white hover:bg-amber-500">
+                <i data-lucide="blocks" class="inline-block w-4 h-4 mr-1"></i> ฝึกประสมคำ
+            </button>
+            <button onclick="switchTab('cards')" id="tab-cards" class="nav-btn px-3 py-1.5 rounded-lg text-sm md:text-base font-semibold transition-all text-white hover:bg-amber-500">
+                <i data-lucide="layers" class="inline-block w-4 h-4 mr-1"></i> บัตรคำทีละคำ
+            </button>
+            <button onclick="switchTab('grid')" id="tab-grid" class="nav-btn px-3 py-1.5 rounded-lg text-sm md:text-base font-semibold transition-all text-white hover:bg-amber-500">
+                <i data-lucide="layout-grid" class="inline-block w-4 h-4 mr-1"></i> รวมบัตรคำทั้งหมด
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Interactive View Area (Full screen fit) -->
+    <main class="flex-1 p-3 md:p-5 flex flex-col justify-center items-center overflow-hidden relative">
+
+        <!-- TAB 1: INTRO TO SARA EOH -->
+        <section id="view-intro" class="tab-content w-full h-full flex flex-col justify-between items-center max-w-5xl mx-auto">
+            <!-- Concept Banner -->
+            <div class="w-full bg-white rounded-2xl shadow-sm border border-slate-200 p-4 text-center">
+                <span class="inline-block bg-amber-100 text-amber-800 text-sm font-bold px-3 py-1 rounded-full mb-2">โครงสร้างสระ</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">
+                    สระเออะ เป็น <span class="text-rose-500 underline decoration-wavy decoration-rose-300">สระเสียงสั้น</span>
+                </h2>
+                <p class="text-slate-600 mt-1 text-base">ประกอบด้วย รูปสระ 3 ส่วนเขียนล้อมพยัญชนะต้น</p>
+            </div>
+
+            <!-- Visual Formula -->
+            <div class="w-full flex-1 flex items-center justify-center my-3">
+                <div class="grid grid-cols-5 gap-2 md:gap-4 w-full max-w-4xl items-center text-center">
+                    <!-- E -->
+                    <div class="bg-gradient-to-br from-rose-500 to-pink-600 text-white rounded-2xl p-4 shadow-md flex flex-col justify-center items-center border-b-4 border-rose-700">
+                        <span class="text-5xl md:text-7xl font-extrabold">เ-</span>
+                        <span class="text-xs md:text-sm bg-white/20 px-2 py-0.5 rounded-md mt-2">สระเอ (ด้านหน้า)</span>
+                    </div>
+
+                    <div class="text-3xl font-black text-slate-400">+</div>
+
+                    <!-- Consonant placeholder -->
+                    <div class="bg-amber-50 border-4 border-dashed border-amber-400 text-amber-700 rounded-2xl p-4 flex flex-col justify-center items-center">
+                        <span class="text-4xl md:text-6xl font-extrabold">พ</span>
+                        <span class="text-xs md:text-sm text-amber-800 font-semibold mt-2">พยัญชนะต้น</span>
+                    </div>
+
+                    <div class="text-3xl font-black text-slate-400">+</div>
+
+                    <!-- OH + AH -->
+                    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-2xl p-4 shadow-md flex flex-col justify-center items-center border-b-4 border-blue-700">
+                        <span class="text-5xl md:text-7xl font-extrabold">-อ-ะ</span>
+                        <span class="text-xs md:text-sm bg-white/20 px-2 py-0.5 rounded-md mt-2">ตัว อ และ สระอะ (ด้านหลัง)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Examples Bar -->
+            <div class="w-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 text-white p-4 rounded-2xl shadow-md flex items-center justify-around">
+                <div class="text-center">
+                    <span class="text-xs opacity-80 block">ตัวอย่างที่ 1</span>
+                    <span class="text-2xl md:text-3xl font-bold">จ + เ-อะ = <span class="text-yellow-200 underline">เจอะ</span></span>
+                </div>
+                <div class="h-8 w-px bg-white/30"></div>
+                <div class="text-center">
+                    <span class="text-xs opacity-80 block">ตัวอย่างที่ 2</span>
+                    <span class="text-2xl md:text-3xl font-bold">ล + เ-อะ = <span class="text-yellow-200 underline">เลอะ</span></span>
+                </div>
+                <div class="h-8 w-px bg-white/30"></div>
+                <div class="text-center">
+                    <span class="text-xs opacity-80 block">ตัวอย่างที่ 3</span>
+                    <span class="text-2xl md:text-3xl font-bold">ย + เ-อะ = <span class="text-yellow-200 underline">เยอะ</span></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: WORD COMBINING MEDIA -->
+        <section id="view-combine" class="tab-content hidden w-full h-full flex flex-col justify-between items-center max-w-4xl mx-auto">
+            <div class="text-center mb-2">
+                <h2 class="text-xl md:text-2xl font-bold text-slate-800">สื่อฝึกแจกลูกและประสมคำสระเออะ</h2>
+                <p class="text-xs md:text-sm text-slate-500">กดเลือกพยัญชนะต้นเพื่อฝึกอ่านประสมสระเออะ (ไม่มีตัวสะกด)</p>
+            </div>
+
+            <!-- Interactive Builder Display Board -->
+            <div class="w-full bg-white rounded-3xl shadow-lg border-4 border-amber-300 p-6 flex flex-col items-center justify-center flex-1 my-2 relative">
+                
+                <!-- Large Spell Display -->
+                <div class="flex items-center justify-center space-x-3 md:space-x-6 my-auto">
+                    <!-- Initial Consonant -->
+                    <div class="flex flex-col items-center">
+                        <div id="builder-c" class="w-20 h-24 md:w-28 md:h-32 bg-amber-100 border-2 border-amber-400 rounded-2xl flex items-center justify-center text-4xl md:text-6xl font-extrabold text-amber-900 shadow-inner">
+                            จ
+                        </div>
+                        <span class="text-xs text-slate-500 mt-2 font-bold">พยัญชนะต้น</span>
+                    </div>
+
+                    <span class="text-3xl font-bold text-slate-300">+</span>
+
+                    <!-- Vowel -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 md:w-32 md:h-32 bg-pink-100 border-2 border-pink-400 rounded-2xl flex items-center justify-center text-3xl md:text-5xl font-extrabold text-pink-700 shadow-inner">
+                            เ-อะ
+                        </div>
+                        <span class="text-xs text-slate-500 mt-2 font-bold">สระเออะ</span>
+                    </div>
+
+                    <span class="text-3xl font-bold text-slate-300">=</span>
+
+                    <!-- Resulting Word -->
+                    <div class="flex flex-col items-center">
+                        <div id="builder-result" class="w-32 h-24 md:w-44 md:h-32 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center text-4xl md:text-6xl font-extrabold text-white shadow-lg border-2 border-amber-300 tracking-wide">
+                            เจอะ
+                        </div>
+                        <span class="text-xs text-amber-700 mt-2 font-bold">คำที่ได้</span>
+                    </div>
+                </div>
+
+                <!-- Breakdown Info -->
+                <div class="w-full bg-slate-50 rounded-xl p-3 text-center border border-slate-200 mt-4">
+                    <span class="text-slate-500 text-sm">การแจกลูกสะกดคำ: </span>
+                    <span id="builder-spelling" class="text-lg md:text-xl font-bold text-slate-800">
+                        จอ - เออะ - เจอะ
+                    </span>
+                </div>
+            </div>
+
+            <!-- Consonant Selector Buttons -->
+            <div class="w-full bg-slate-200/80 p-3 rounded-2xl border border-slate-300">
+                <div class="text-xs font-bold text-slate-600 mb-2 text-center">คลิกเลือกพยัญชนะต้น:</div>
+                <div id="consonant-buttons" class="flex flex-wrap gap-2 justify-center">
+                    <!-- Buttons generated via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: SINGLE FLASHCARD VIEW (FLIP CARD) -->
+        <section id="view-cards" class="tab-content hidden w-full h-full flex flex-col justify-between items-center max-w-3xl mx-auto">
+            
+            <div class="flex justify-between items-center w-full px-2">
+                <div class="text-sm font-bold text-slate-600">
+                    บัตรคำที่ <span id="card-counter" class="text-amber-600 text-lg">1</span> / <span id="card-total">10</span>
+                </div>
+                <div class="text-xs bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-bold">
+                    💡 แตะที่บัตรคำเพื่อพลิกดูเฉลย/รูปภาพ
+                </div>
+            </div>
+
+            <!-- Flip Card Container -->
+            <div class="w-full flex-1 my-3 perspective-1000 flex items-center justify-center">
+                <div id="flashcard" onclick="flipCard()" class="w-full max-w-md h-72 md:h-80 relative transform-style-3d transition-transform duration-500 cursor-pointer shadow-xl rounded-3xl">
+                    
+                    <!-- FRONT SIDE (Word View) -->
+                    <div class="absolute inset-0 bg-white border-4 border-amber-400 rounded-3xl flex flex-col items-center justify-between p-6 backface-hidden">
+                        <div class="w-full flex justify-between items-center text-xs font-bold text-amber-500">
+                            <span>บัตรคำสระเออะ</span>
+                            <i data-lucide="rotate-cw" class="w-4 h-4"></i>
+                        </div>
+
+                        <div id="card-front-word" class="text-6xl md:text-8xl font-black text-amber-900 my-auto tracking-wide">
+                            เจอะ
+                        </div>
+
+                        <div class="text-xs text-slate-400 font-medium">
+                            (คลิกเพื่อพลิกบัตรคำ)
+                        </div>
+                    </div>
+
+                    <!-- BACK SIDE (Illustration / Meaning View) -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-amber-500 to-orange-600 text-white rounded-3xl flex flex-col items-center justify-between p-6 backface-hidden rotate-y-180 border-4 border-amber-300">
+                        <div class="w-full flex justify-between items-center text-xs font-bold text-amber-100">
+                            <span>ภาพประกอบ / ความหมาย</span>
+                            <i data-lucide="rotate-cw" class="w-4 h-4"></i>
+                        </div>
+
+                        <div class="flex flex-col items-center justify-center my-auto">
+                            <div id="card-back-icon" class="mb-3 bg-white/20 p-4 rounded-full">
+                                <i data-lucide="search" class="w-16 h-16 text-white"></i>
+                            </div>
+                            <div id="card-back-text" class="text-2xl md:text-3xl font-bold text-yellow-200 text-center">
+                                เจอะ (พบเจอะ)
+                            </div>
+                            <div id="card-back-spell" class="text-sm text-amber-100 mt-2 bg-black/20 px-3 py-1 rounded-lg">
+                                จ + เ-อะ
+                            </div>
+                        </div>
+
+                        <div class="text-xs text-amber-200 font-medium">
+                            (คลิกเพื่อพลิกกลับ)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="flex items-center space-x-4 w-full max-w-md">
+                <button onclick="prevCard()" class="flex-1 bg-white hover:bg-slate-50 text-slate-700 font-bold py-3 rounded-2xl shadow border border-slate-300 flex justify-center items-center active:scale-95 transition-all">
+                    <i data-lucide="chevron-left" class="w-5 h-5 mr-1"></i> คำก่อนหน้า
+                </button>
+                <button onclick="nextCard()" class="flex-1 bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 rounded-2xl shadow-lg flex justify-center items-center active:scale-95 transition-all">
+                    คำถัดไป <i data-lucide="chevron-right" class="w-5 h-5 ml-1"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- TAB 4: FLASHCARD GRID VIEW (Full view, fit screen) -->
+        <section id="view-grid" class="tab-content hidden w-full h-full flex flex-col justify-between items-center">
+            <div class="text-center mb-2">
+                <h2 class="text-xl md:text-2xl font-bold text-slate-800">คลังบัตรคำสระเออะ (ไม่มีตัวสะกด)</h2>
+                <p class="text-xs text-slate-500">รวมคำสระเออะสำหรับฝึกอ่านและทบทวน</p>
+            </div>
+
+            <!-- Grid Container - Optimized to fit 10 cards within viewport -->
+            <div id="grid-container" class="w-full flex-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 p-2 my-auto items-center">
+                <!-- Dynamic Grid Cards Inserted via JS -->
+            </div>
+
+            <!-- Footer Legend inside Grid -->
+            <div class="w-full bg-white rounded-xl p-2 text-center text-xs text-slate-500 border border-slate-200 mt-2">
+                📌 หมายเหตุ: คำสระเออะเป็นสระเสียงสั้น ทุกคำในสื่อนี้ไม่มีตัวสะกดตามข้อกำหนด
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Bar -->
+    <footer class="bg-slate-800 text-slate-300 text-xs py-2 px-4 flex-none flex justify-between items-center">
+        <div>สื่อการเรียนรู้ภาษาไทย: <span class="text-amber-400 font-semibold">สระเออะ (เ-อะ)</span></div>
+        <div class="flex items-center space-x-2">
+            <span class="bg-slate-700 px-2 py-0.5 rounded text-[10px] text-slate-300">ไม่มีตัวสะกด</span>
+            <span class="bg-amber-600 text-white px-2 py-0.5 rounded text-[10px]">แบบไม่มีเสียง</span>
+        </div>
+    </footer>
+
+    <script>
+        // Data Set: Words with Sara Eoh (No Final Consonant)
+        const eohWords = [
+            { word: "เจอะ", consonant: "จ", spell: "จอ - เออะ - เจอะ", meaning: "พบเจอะ / พบเห็น", icon: "search" },
+            { word: "เลอะ", consonant: "ล", spell: "ลอ - เออะ - เลอะ", meaning: "เลอะเทอะ / สกปรก", icon: "sparkles" },
+            { word: "เถอะ", consonant: "ถ", spell: "ถอ - เออะ - เถอะ", meaning: "ชวนทำ (ไปเถอะ)", icon: "arrow-right-circle" },
+            { word: "เยอะ", consonant: "ย", spell: "ยอ - เออะ - เยอะ", meaning: "เยอะแยะ / มากมาย", icon: "layers" },
+            { word: "เปอะ", consonant: "ป", spell: "ปอ - เออะ - เปอะ", meaning: "เปอะเปื้อน / เปรอะ", icon: "droplet" },
+            { word: "เงอะ", consonant: "ง", spell: "งอ - เออะ - เงอะ", meaning: "เงอะงะ / ไม่คล่องแคล่ว", icon: "help-circle" },
+            { word: "เฉอะ", consonant: "ฉ", spell: "ฉอ - เออะ - เฉอะ", meaning: "เฉอะแฉะ / เปียกชื้น", icon: "cloud-rain" },
+            { word: "เทอะ", consonant: "ท", spell: "ทอ - เออะ - เทอะ", meaning: "เทอะทะ / ใหญ่รุ่มร่าม", icon: "box" },
+            { word: "เกรอะ", consonant: "กร", spell: "กรอ - เออะ - เกรอะ", meaning: "เกรอะกรัง / หมองหมัก", icon: "shield-alert" },
+            { word: "เปรอะ", consonant: "ปร", spell: "ปรอ - เออะ - เปรอะ", meaning: "เปรอะเปื้อน / รอยเปื้อน", icon: "paint-bucket" }
+        ];
+
+        let currentCardIndex = 0;
+        let isFlipped = false;
+
+        // Initialize application logic
+        window.onload = function() {
+            lucide.createIcons();
+            initBuilderButtons();
+            renderGridCards();
+            updateFlashcard();
+            document.getElementById('card-total').innerText = eohWords.length;
+        };
+
+        // Navigation Tab Switching
+        function switchTab(tabId) {
+            // Hide all views
+            document.querySelectorAll('.tab-content').forEach(view => {
+                view.classList.add('hidden');
+            });
+
+            // Reset tab button states
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'text-amber-700', 'shadow');
+                btn.classList.add('text-white', 'hover:bg-amber-500');
+            });
+
+            // Show selected view
+            const activeView = document.getElementById(`view-${tabId}`);
+            if (activeView) {
+                activeView.classList.remove('hidden');
+            }
+
+            // Highlight active button
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-white', 'text-amber-700', 'shadow');
+                activeBtn.classList.remove('text-white', 'hover:bg-amber-500');
+            }
+
+            // Re-render Lucide icons for dynamically loaded or shown components
+            setTimeout(() => lucide.createIcons(), 50);
+        }
+
+        // Initialize Consonant Selector Buttons in Tab 2
+        function initBuilderButtons() {
+            const container = document.getElementById('consonant-buttons');
+            container.innerHTML = '';
+
+            eohWords.forEach((item, index) => {
+                const btn = document.createElement('button');
+                btn.className = `px-3 py-2 rounded-xl font-extrabold text-base md:text-lg transition-all border shadow-sm ${
+                    index === 0 ? 'bg-amber-500 text-white border-amber-600 scale-105' : 'bg-white text-slate-700 border-slate-300 hover:bg-amber-100'
+                }`;
+                btn.innerText = item.consonant;
+                btn.onclick = () => selectConsonant(index, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        // Select Consonant in Tab 2
+        function selectConsonant(index, btnElement) {
+            const data = eohWords[index];
+            document.getElementById('builder-c').innerText = data.consonant;
+            document.getElementById('builder-result').innerText = data.word;
+            document.getElementById('builder-spelling').innerText = data.spell;
+
+            // Highlight active button
+            const buttons = document.querySelectorAll('#consonant-buttons button');
+            buttons.forEach(b => {
+                b.className = 'px-3 py-2 rounded-xl font-extrabold text-base md:text-lg transition-all border shadow-sm bg-white text-slate-700 border-slate-300 hover:bg-amber-100';
+            });
+            btnElement.className = 'px-3 py-2 rounded-xl font-extrabold text-base md:text-lg transition-all border shadow-sm bg-amber-500 text-white border-amber-600 scale-105';
+        }
+
+        // Single Flashcard Controls (Tab 3)
+        function updateFlashcard() {
+            const cardData = eohWords[currentCardIndex];
+            const flashcardElem = document.getElementById('flashcard');
+            
+            // Reset Flip State
+            if (isFlipped) {
+                flashcardElem.classList.remove('rotate-y-180');
+                isFlipped = false;
+            }
+
+            setTimeout(() => {
+                document.getElementById('card-counter').innerText = currentCardIndex + 1;
+                document.getElementById('card-front-word').innerText = cardData.word;
+                document.getElementById('card-back-text').innerText = `${cardData.word} (${cardData.meaning.split('/')[0]})`;
+                document.getElementById('card-back-spell').innerText = `${cardData.consonant} + เ-อะ (${cardData.spell})`;
+
+                // Render back icon
+                const iconContainer = document.getElementById('card-back-icon');
+                iconContainer.innerHTML = `<i data-lucide="${cardData.icon}" class="w-16 h-16 text-white"></i>`;
+                lucide.createIcons();
+            }, isFlipped ? 250 : 0);
+        }
+
+        function flipCard() {
+            const flashcardElem = document.getElementById('flashcard');
+            isFlipped = !isFlipped;
+            if (isFlipped) {
+                flashcardElem.classList.add('rotate-y-180');
+            } else {
+                flashcardElem.classList.remove('rotate-y-180');
+            }
+        }
+
+        function nextCard() {
+            currentCardIndex = (currentCardIndex + 1) % eohWords.length;
+            updateFlashcard();
+        }
+
+        function prevCard() {
+            currentCardIndex = (currentCardIndex - 1 + eohWords.length) % eohWords.length;
+            updateFlashcard();
+        }
+
+        // Render Cards Grid (Tab 4)
+        function renderGridCards() {
+            const container = document.getElementById('grid-container');
+            container.innerHTML = '';
+
+            eohWords.forEach((item, idx) => {
+                const card = document.createElement('div');
+                card.className = "bg-white border-2 border-amber-300 hover:border-amber-500 rounded-2xl p-3 flex flex-col items-center justify-between shadow-sm hover:shadow-md transition-all cursor-pointer h-full min-h-[110px]";
+                card.onclick = () => {
+                    currentCardIndex = idx;
+                    switchTab('cards');
+                    updateFlashcard();
+                };
+
+                card.innerHTML = `
+                    <div class="text-xs font-bold text-amber-500 w-full text-left">คำที่ ${idx + 1}</div>
+                    <div class="text-3xl md:text-4xl font-extrabold text-amber-900 my-1">${item.word}</div>
+                    <div class="text-[11px] text-slate-500 font-medium bg-amber-50 w-full text-center py-0.5 rounded-md border border-amber-100">
+                        ${item.consonant} + เ-อะ
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
